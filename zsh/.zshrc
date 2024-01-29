@@ -17,6 +17,8 @@ export MUJOCO_GL=egl
 # Path to my images
 export IMAGE_HOME="$HOME/Images"
 
+# Path to my dotfiles
+export DOT_FILE_HOME="$HOME/dotfiles"
 # Path to my NvChad custom config files
 export NVIM_CUSTOM_HOME="$DOT_FILE_HOME/NvChad-custom-file"
 # Path to my dotfiles of zsh:
@@ -34,8 +36,6 @@ export P10K_CONFIG_FILE="$ZSH_DOT_FILE_HOME/.p10k.zsh"
 
 # Path to "Projects"
 export PROJECT_HOME="$HOME/Projects"
-# Path to my dotfiles
-export DOT_FILE_HOME="$HOME/dotfiles"
 
 # Path to some dirs:
 export TOOL_HOME="$HOME/Tools"
