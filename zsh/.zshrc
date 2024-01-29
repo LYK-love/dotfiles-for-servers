@@ -5,12 +5,17 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# For MUJOCO_GL
+# See https://github.com/Eclectic-Sheep/sheeprl/blob/main/howto/learn_in_dmc.yyyy-mm-dd
+# Make sure you have installed egl on your system. (For Ubuntu22.04: `sudo apt-get install libglew2.2`)
+export MUJOCO_GL=egl
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-#Path to my dotfiles
-export DOT_FILE_HOME="$HOME/Projects/MyOfficialProjects/dotfiles"
+
+# Path to my images
+export IMAGE_HOME="$HOME/Images"
 
 # Path to my NvChad custom config files
 export NVIM_CUSTOM_HOME="$DOT_FILE_HOME/NvChad-custom-file"
@@ -29,6 +34,8 @@ export P10K_CONFIG_FILE="$ZSH_DOT_FILE_HOME/.p10k.zsh"
 
 # Path to "Projects"
 export PROJECT_HOME="$HOME/Projects"
+# Path to my dotfiles
+export DOT_FILE_HOME="$HOME/dotfiles"
 
 # Path to some dirs:
 export TOOL_HOME="$HOME/Tools"
@@ -64,8 +71,6 @@ DRACULA_DISPLAY_CONTEXT=1
 export ZSH="$HOME/.oh-my-zsh"
 export OH_MY_ZSH=$ZSH
 
-# Package Manager
-export HOMEBREW_BOTTLE_DOMAIN=""
 
 
 # Zellij
@@ -86,7 +91,6 @@ alias jdk8='export JAVA_HOME=$JAVA_8_HOME'
 alias jdk11='export JAVA_HOME=$JAVA_11_HOME'
 alias jdk17='export JAVA_HOME=$JAVA_17_HOME'
 
-# use conda python( not brew python )
 ## Sometimes python will be confused 
 # unalias python
 
@@ -100,9 +104,6 @@ export GO111MODULE=on
 export GOPROXY=https://goproxy.io,direct
 ## or `export GOPROXY="https://goproxy.cn"`
 
-## go install 会讲软件安装到$GOPATH/bin, 由于它被配置到环境变量,因此软件可以直接从命令行调用
-export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix golang)/libexec"
 
 ## you can set as your own mirror
 ## export GO_BINARY_BASE_URL=https://golang.google.cn/dl/
@@ -131,25 +132,14 @@ export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
 
 
-# LLVM on MAC, mac已经自带了llvm, 但是位置很奇怪
-MAC_LOCAL_LLVM_VERSION=14.0.6_1
-export LLVM_MAC_LOCAL_HOME=/opt/homebrew/Cellar/llvm/$MAC_LOCAL_LLVM_VERSION
-# brew目录下的llvm实际上是指向Mac local LLVM的符号链接, 为了方便, 还是用符号链接的路径吧
-# export LLVM_HOME=/opt/homebrew/opt/llvm
-# export LDFLAGS="-L($LLVM_HOME)/lib -Wl,-rpath,($LLVM_HOME)/lib"
-# export CPPFLAGS="-I($LLVM_HOME)/include -I($LLVM_HOME)/include/c++/v1/"
-# export PATH=$PATH:$LLVM_HOME/bin
 
 # clang
 # export CC=clang
 # export CXX=clang++
 
-# Bison
-export PATH="$(brew --prefix bison)/bin:$PATH"
 
 # NVM
 export NVM_DIR=~/.nvm
-# source $(brew --prefix nvm)/nvm.sh
 
 # Terminal Tools Config
 
@@ -283,22 +273,8 @@ bucket_old="seek2-lyk"
 # export https_proxy=http://127.0.0.1:7890
 # export all_proxy=http://127.0.0.1:7890
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/lyk/Tools/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/lyk/Tools/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/lyk/Tools/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/lyk/Tools/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 
 alias nigate='bash nigate.shortcut'
 
@@ -310,3 +286,23 @@ if [ -f '/Users/lyk/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/l
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/lyk/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/lyk/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/lyk/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/lyk/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/lyk/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/lyk/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
