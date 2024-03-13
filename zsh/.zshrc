@@ -18,7 +18,10 @@ export MUJOCO_GL=egl
 export IMAGE_HOME="$HOME/Images"
 
 # Path to my dotfiles
-export DOT_FILE_HOME="$HOME/dotfiles"
+# export DOT_FILE_HOME="$HOME/dotfiles"
+# Since I use `yadm`, all the dotfiles are in my `$HOME`
+export DOT_FILE_HOME="$HOME"
+
 # Path to my NvChad custom config files
 export NVIM_CUSTOM_HOME="$DOT_FILE_HOME/NvChad-custom-file"
 # Path to my dotfiles of zsh:
@@ -73,23 +76,9 @@ export OH_MY_ZSH=$ZSH
 
 
 
-# Zellij
-export ZELLIJ_CONFIG_FILE="$HOME/.config/zellij/config.kdl"
-export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
-
-#Python apps
-export PATH="$HOME/.local/bin:$PATH"
-# jdk 版本切换， on mac
-# jdk-17.0.2.jdk   jdk1.8.0_321.jdk jdk-11.0.14.jdk 
-export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home
-export JAVA_11_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.14.jdk/Contents/Home
-export JAVA_17_HOME=/Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home
 
 
 
-alias jdk8='export JAVA_HOME=$JAVA_8_HOME'
-alias jdk11='export JAVA_HOME=$JAVA_11_HOME'
-alias jdk17='export JAVA_HOME=$JAVA_17_HOME'
 
 ## Sometimes python will be confused 
 # unalias python
