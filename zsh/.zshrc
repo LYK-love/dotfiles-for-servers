@@ -7,9 +7,10 @@ fi
 
 # For MUJOCO_GL
 # See https://github.com/Eclectic-Sheep/sheeprl/blob/main/howto/learn_in_dmc.yyyy-mm-dd
-# Make sure you have installed egl on your system. (For Ubuntu22.04: `sudo apt-get install libglew2.2`)
-export MUJOCO_GL=egl
-
+# For egl, make sure you have installed egl on your system. (For Ubuntu22.04: `sudo apt-get install libglew2.2`)
+# For osmesa, `sudo apt-get install libgl1-mesa-glx libosmesa6`
+export MUJOCO_GL=osmesa
+export WANDB_MODE=offline
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -41,17 +42,10 @@ export P10K_CONFIG_FILE="$ZSH_DOT_FILE_HOME/.p10k.zsh"
 export PROJECT_HOME="$HOME/Projects"
 
 # Path to some dirs:
-export TOOL_HOME="$HOME/Tools"
 export GLOBAL_TOOL_HOME="$TOOL_HOME/Global_Tools"
 export PATH="$GLOBAL_TOOL_HOME:$PATH"
-export HEXO_HOME="$HOME/Documents/LYK-love.github.io"
-export POSTS="$HEXO_HOME/source/_posts"
-export DRAFTS="$HEXO_HOME/source/_drafts"
 export ML="$HOME/Projects/OnlineProjects/d2l-en/pytorch"
-export DIARY="$HOME/Library/Mobile Documents/com~apple~CloudDocs/Diary"
 export LAZY="$HOME/Projects/MyOfficialProjects/Lazy Scripts"
-
-alias diary="open -a typora \"$DIARY/Diary2023/Diary2023_11.md\""
 alias oss="python \"$LAZY/OSSUtils/OSSUtils.py\""
 alias blog="python \"$LAZY/BlogUtils/BlogUtils.py\""
 
