@@ -15,6 +15,7 @@ export WANDB_MODE=offline
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 
+
 # Path to my images
 export IMAGE_HOME="$HOME/Images"
 
@@ -41,25 +42,9 @@ export P10K_CONFIG_FILE="$ZSH_DOT_FILE_HOME/.p10k.zsh"
 # Path to "Projects"
 export PROJECT_HOME="$HOME/Projects"
 
-# Path to some dirs:
-export GLOBAL_TOOL_HOME="$TOOL_HOME/Global_Tools"
-export PATH="$GLOBAL_TOOL_HOME:$PATH"
-export ML="$HOME/Projects/OnlineProjects/d2l-en/pytorch"
-export LAZY="$HOME/Projects/MyOfficialProjects/Lazy Scripts"
-alias oss="python \"$LAZY/OSSUtils/OSSUtils.py\""
-alias blog="python \"$LAZY/BlogUtils/BlogUtils.py\""
-
-
-alias apa="python \"/Users/lyk/Projects/MyOfficialProjects/APA-Toolkit/main.py\""
-# Emacs
-export DOOM_HOME="$HOME/.config/emacs/bin"
-export PATH="$DOOM_HOME:$PATH"
-
 
 #Path to ZSH Dracula Theme
 export DRACULA_THEME="$ZSH_DOT_FILE_HOME/zsh-dracula_theme"
-
-
 ## The context segment shows the username, and, if the user is root or logged in via SSH, the hostname of the system. To enable this segment, use the following in your config file:
 
 DRACULA_DISPLAY_CONTEXT=1 
@@ -68,64 +53,7 @@ DRACULA_DISPLAY_CONTEXT=1
 export ZSH="$HOME/.oh-my-zsh"
 export OH_MY_ZSH=$ZSH
 
-
-
-
-
-
-
-## Sometimes python will be confused 
-# unalias python
-
-# 默认java8
 export JAVA_HOME=$JAVA_8_HOME
-
-# Golang Path, 并配置了代理
-export GO111MODULE=on
-
-## set mirroring, if you need to
-export GOPROXY=https://goproxy.io,direct
-## or `export GOPROXY="https://goproxy.cn"`
-
-
-## you can set as your own mirror
-## export GO_BINARY_BASE_URL=https://golang.google.cn/dl/
-
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-
-
-# SCALA_HOME
-export SCALA_HOME=/usr/local/scala
-export TERM=xterm-color
-export PATH=$PATH:${JAVA_HOME}/bin:$SCALA_HOME/bin
-
-#HADOOP_HOME
-export HADOOP_HOME=$HOME/hadoop
-export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
-
-#SPARK_HOME
-export SPARK_HOME=$HOME/spark
-export PATH=$PATH:$SPARK_HOME/bin
-
-#FLINK_HOME
-export FLINK_HOME=/usr/local/flink
-export PATH=$PATH:$FLINK_HOME/bin
-# DOCKER
-export DOCKER_BUILDKIT=0
-export COMPOSE_DOCKER_CLI_BUILD=0
-
-
-
-# clang
-# export CC=clang
-# export CXX=clang++
-
-
-# NVM
-export NVM_DIR=~/.nvm
-
-# Terminal Tools Config
-
 
 
 # Themes of zsh. Currenly I have TWO themes. Feel free to choose one.
@@ -197,10 +125,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git  zsh-autosuggestions fasd )
+plugins=(git  zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
+# alias
+alias ls="eza"
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -227,18 +157,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Plugins alias
-## fasd
-alias a='fasd -a'        # any
-alias s='fasd -si'       # show / search / select
-alias d='fasd -d'        # directory
-alias f='fasd -f'        # file
-alias sd='fasd -sid'     # interactive directory selection
-alias sf='fasd -sif'     # interactive file selection
-alias z='fasd_cd -d'     # cd, same functionality as j in autojump
-alias zz='fasd_cd -d -i' # cd with interactive selection
-
-
 
 
 # env for oss
@@ -248,6 +166,12 @@ bucket_old="seek2-lyk"
 # OpenAI API Key
 #
 
+# CLI plugins
+# Zoxide
+eval "$(zoxide init zsh)"
+
+# Atuin. Bind ctrl-r but not up arrow
+eval "$(atuin init zsh --disable-up-arrow)"
 
 # Network
 # Avoid DNS Pollusion from Chinese gov( will result in "Failed to connect to raw.githubusercontent.com port 443" when using git).
@@ -288,4 +212,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+
+source /home/lyk/.config/broot/launcher/bash/br
 
