@@ -14,7 +14,8 @@ export WANDB_MODE=offline
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-
+# By deafult, [lazydocker](https://github.com/jesseduffield/lazydocker) is installed under `$HOME/.local/bin`
+export PATH=$HOME/.local/bin:$PATH
 
 # Path to my images
 export IMAGE_HOME="$HOME/Images"
@@ -131,6 +132,7 @@ source $ZSH/oh-my-zsh.sh
 
 # alias
 alias ls="eza"
+alias lazy="lazydocker"
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -171,7 +173,7 @@ bucket_old="seek2-lyk"
 eval "$(zoxide init zsh)"
 
 # Atuin. Bind ctrl-r but not up arrow
-eval "$(atuin init zsh --disable-up-arrow)"
+# eval "$(atuin init zsh --disable-up-arrow)"
 
 # Network
 # Avoid DNS Pollusion from Chinese gov( will result in "Failed to connect to raw.githubusercontent.com port 443" when using git).
@@ -214,5 +216,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 
-source /home/lyk/.config/broot/launcher/bash/br
 
