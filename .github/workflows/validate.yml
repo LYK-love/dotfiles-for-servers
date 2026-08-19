@@ -1,0 +1,32 @@
+name: Validate dotfiles
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install validators
+        run: sudo apt-get update && sudo apt-get install -y ripgrep shellcheck zsh
+      - name: Check shell syntax
+        run: |
+          zsh -n zsh/.zshrc
+          zsh -n zsh/.p10k.zsh
+          bash -n bash/ssh-agent-tmux.bash
+          bash -n .config/yadm/bootstrap
+          shellcheck bash/ssh-agent-tmux.bash .config/yadm/bootstrap
+      - name: Reject common plaintext secrets
+        run: |
+          if rg -n --hidden --glob '!.git/**' --glob '!**/validate.yml' \
+            '(sk-[A-Za-z0-9_-]{16,}|-----BEGIN (RSA |OPENSSH |EC )?PRIVATE KEY-----|LAB_PASSWD=|OPENAI_API_KEY=.*sk-)' .; then
+            echo 'Potential plaintext credential found.' >&2
+            exit 1
+          fi

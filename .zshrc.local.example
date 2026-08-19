@@ -1,0 +1,6 @@
+# Copy the settings you need into ~/.zshrc.local.
+# Never put real credentials in this example file.
+
+# export PROJECT_HOME="$HOME/Projects"
+# export MUJOCO_GL=osmesa
+# export WANDB_MODE=offline
