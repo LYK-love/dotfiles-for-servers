@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+set -eu
+
+link_file() {
+  source_path=$1
+  target_path=$2
+
+  if [ ! -e "$source_path" ]; then
+    printf 'Missing managed file: %s\n' "$source_path" >&2
+    return 1
+  fi
+
+  if [ -L "$target_path" ]; then
+    if [ "$(readlink "$target_path")" = "$source_path" ]; then
+      return 0
+    fi
+    printf 'Refusing to replace existing symlink: %s\n' "$target_path" >&2
+    return 1
+  fi
+
+  if [ -e "$target_path" ]; then
+    printf 'Refusing to replace existing file: %s\n' "$target_path" >&2
+    printf '%s\n' 'Move it aside, then run yadm bootstrap again.' >&2
+    return 1
+  fi
+
+  mkdir -p "$(dirname "$target_path")"
+  ln -s "$source_path" "$target_path"
+  printf 'Linked %s -> %s\n' "$target_path" "$source_path"
+}
+
+if command -v yadm >/dev/null 2>&1; then
+  yadm submodule update --init --recursive
+fi
+
+link_file "$HOME/zsh/.zshrc" "$HOME/.zshrc"
+link_file "$HOME/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
+link_file "$HOME/zellij/config.kdl" "$HOME/.config/zellij/config.kdl"
+
+printf '%s\n' 'Bootstrap complete. Put machine-local settings in ~/.zshrc.local.'
