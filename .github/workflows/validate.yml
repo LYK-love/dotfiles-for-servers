@@ -15,11 +15,10 @@ jobs:
       - uses: actions/checkout@v7
         with:
           submodules: recursive
-      - name: Verify validators
+      - name: Install validators
         run: |
           command -v rg
-          command -v shellcheck
-          command -v zsh
+          sudo apt-get install -y --no-install-recommends shellcheck zsh
       - name: Check shell syntax
         run: |
           zsh -n zsh/.zshrc
