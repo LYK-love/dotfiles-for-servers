@@ -15,8 +15,11 @@ jobs:
       - uses: actions/checkout@v7
         with:
           submodules: recursive
-      - name: Install validators
-        run: sudo apt-get update && sudo apt-get install -y ripgrep shellcheck zsh
+      - name: Verify validators
+        run: |
+          command -v rg
+          command -v shellcheck
+          command -v zsh
       - name: Check shell syntax
         run: |
           zsh -n zsh/.zshrc
