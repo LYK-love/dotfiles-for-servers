@@ -1,4 +1,5 @@
 # Managed by yadm: https://github.com/LYK-love/dotfiles-for-servers
+# This dotfile doesn't contain any personal information and can be customized by your need.
 
 # Keep Powerlevel10k's instant prompt close to the top of this file.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -45,8 +46,6 @@ if command -v eza >/dev/null 2>&1; then
 fi
 command -v lazydocker >/dev/null 2>&1 && alias lazy='lazydocker'
 
-bucket='lyk-love'
-bucket_old='seek2-lyk'
 
 if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
